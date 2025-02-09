@@ -1,0 +1,4 @@
+postgresql://mydb_owner:m3g9cSOsHRvU@ep-round-mud-a27ojpd7.eu-central-1.aws.neon.tech/mydb?sslmode=require
+password: m3g9cSOsHRvU
+username: mydb_owner
+host: ep-round-mud-a27ojpd7.eu-central-1.aws.neon.tech
