@@ -10,8 +10,12 @@ public class DatabaseSeeder implements CommandLineRunner {
     @Autowired
     private CategorySeeder categorySeeder;
 
+    @Autowired
+    private ProductSeeder productSeeder;
+
     @Override
     public void run(String... args) throws Exception {
         categorySeeder.seed();
+        productSeeder.seed();
     }
 }
