@@ -1,6 +1,6 @@
 package org.example.service;
 
-import org.example.dtos.Category;
+import org.example.dtos.CategoryPostDto;
 import org.example.entities.CategoryEntity;
 import org.example.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class CategoryService {
 
     public Optional<CategoryEntity> getCategoryById(int id) { return categoryRepository.findById(id);}
 
-    public CategoryEntity createCategory(Category category) {
+    public CategoryEntity createCategory(CategoryPostDto category) {
         var entity = new CategoryEntity();
         entity.setName(category.getName());
         entity.setDescription(category.getDescription());
@@ -34,7 +34,7 @@ public class CategoryService {
         return categoryRepository.save(entity);
     }
 
-    public boolean updateCategory(Integer id, Category category) {
+    public boolean updateCategory(Integer id, CategoryPostDto category) {
         var res = getCategoryById(id);
         if (res.isEmpty()){
             return false;
