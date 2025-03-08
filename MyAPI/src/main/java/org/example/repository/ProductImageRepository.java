@@ -8,5 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ProductRepository extends JpaRepository<ProductEntity, Integer> {
+public interface ProductImageRepository extends JpaRepository<ProductImageEntity, Integer> {
+    List<ProductImageEntity> findByProduct(ProductEntity product);
 }

@@ -32,8 +32,6 @@ public class CategoryController {
     }
 
     @PostMapping(consumes = MULTIPART_FORM_DATA_VALUE)
-
-
     public ResponseEntity<CategoryEntity> createCategory(@ModelAttribute CategoryPostDto category) {
         CategoryEntity createdCategory = categoryService.createCategory(category);
         return new ResponseEntity<>(createdCategory, HttpStatus.CREATED);
