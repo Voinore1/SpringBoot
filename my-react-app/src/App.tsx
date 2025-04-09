@@ -1,46 +1,24 @@
-import './App.css';
-import { Button } from "flowbite-react";
-import { APP_ENV } from "./env";
-import { Table } from "flowbite-react";
-import CategoryRow from './components/categoryRow';
-import { useGetAllCategoriesQuery } from './services/categoriesAPI';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import HomePage from './Pages/HomePage';
+import CategoriesPage from './Pages/CategoriesPage';
+import CreateCategoryPage from "./Pages/CreateCategoryPage.tsx";
 
-function App() {
-  console.log("App started", APP_ENV.REMOTE_BASE_URL);
+const App: React.FC = () => (
+    <Router>
+        <Routes>
+            <Route path="/" element={<Layout />}>
+                <Route index element={<HomePage />} />
+                <Route path="categories">
+                    <Route index element={ <CategoriesPage/> }/>
+                    <Route path="create" element={<CreateCategoryPage />} />
+                    <Route path="edit:id" element={<CreateCategoryPage />} />
+                </Route>
 
-  const CategoriesTable: React.FC = () => {
-
-    const { data: categories, error, isLoading } = useGetAllCategoriesQuery();
-
-    if (isLoading) return <p>Loading...</p>;
-    if (error) return <p>Error occurred while fetching categories.</p>;
-
-    return (
-      <div className="overflow-x-auto">
-        <Table>
-          <Table.Head>
-            <Table.HeadCell>Назва</Table.HeadCell>
-            <Table.HeadCell>Фото</Table.HeadCell>
-            <Table.HeadCell>Опис</Table.HeadCell>
-            <Table.HeadCell>Дії</Table.HeadCell>
-          </Table.Head>
-          <Table.Body className="divide-y">
-            {categories?.map((category) => (
-              <CategoryRow key={category.id} category={category} />
-            ))}
-          </Table.Body>
-        </Table>
-      </div>
-    );
-  };
-
-  return (
-    <>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      <Button color="purple">Purple</Button>
-      <CategoriesTable />
-    </>
-  );
-}
+            </Route>
+        </Routes>
+    </Router>
+);
 
 export default App;

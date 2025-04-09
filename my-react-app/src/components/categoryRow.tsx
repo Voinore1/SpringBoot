@@ -3,7 +3,6 @@ import { Table } from "flowbite-react";
 import { Category } from "../models/Category";
 
 
-
 const CategoryRow: React.FC<{ category: Category }> = ({ category }) => {
   return (
     <Table.Row key={category.id} className="bg-white dark:border-gray-700 dark:bg-gray-800">

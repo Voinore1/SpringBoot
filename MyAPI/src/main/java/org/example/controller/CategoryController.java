@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,7 +51,6 @@ public class CategoryController {
                 ? ResponseEntity.ok().build()
                 : ResponseEntity.notFound().build();
     }
-
 
 
 }

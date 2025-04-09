@@ -5,3 +5,9 @@ export interface Category {
   image: string;
   creationTime: string;
 }
+
+export interface ICategoryCreate {
+  name: string;
+  description: string;
+  imageFile: File | null;
+}
