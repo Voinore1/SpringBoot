@@ -51,7 +51,7 @@ public class ProductService {
                     .map(file -> {
                         var imageName = fileService.load(file);
                         var img = new ProductImageEntity();
-                        img.setName(imageName);
+                        img.setImageURL(imageName);
                         img.setProduct(entity);
                         return img;
                     })
@@ -80,7 +80,7 @@ public class ProductService {
 
         var oldImages = productImageRepository.findByProduct(product);
         productImageRepository.deleteAll(oldImages);
-        oldImages.forEach(image -> fileService.remove(image.getName()));
+        oldImages.forEach(image -> fileService.remove(image.getImageURL()));
 
         var newImages = updatedProduct.getImageFiles();
         if (newImages != null) {
@@ -89,7 +89,7 @@ public class ProductService {
                     .map(file -> {
                         var imageName = fileService.load(file);
                         var img = new ProductImageEntity();
-                        img.setName(imageName);
+                        img.setImageURL(imageName);
                         img.setProduct(product);
                         return img;
                     })
@@ -111,7 +111,7 @@ public class ProductService {
         // Видаляємо всі зображення перед видаленням продукту
         var productImages = productImageRepository.findByProduct(product);
         productImageRepository.deleteAll(productImages);
-        productImages.forEach(image -> fileService.remove(image.getName()));
+        productImages.forEach(image -> fileService.remove(image.getImageURL()));
 
         // Видаляємо сам продукт
         productRepository.delete(product);

@@ -43,7 +43,7 @@ public class ProductSeeder {
         var imageName = fileService
                 .load("https://estore.ua/media/catalog/product/cache/8/image/650x650/9df78eab33525d08d6e5fb8d27136e95/i/p/iphone-16-pro-finish-select-202409-6-3inch-naturaltitanium.png");
         var img1 = new ProductImageEntity();
-        img1.setName(imageName);
+        img1.setImageURL(imageName);
         img1.setProduct(product1);
 
         var product2 = new ProductEntity();
@@ -56,7 +56,7 @@ public class ProductSeeder {
         product2.setPrice(150);
         product2.setCategory(categories.get(random.nextInt(categories.size())));
         var img2 = new ProductImageEntity();
-        img1.setName(imageName);
+        img1.setImageURL(imageName);
         img1.setProduct(product2);
 
         var product3 = new ProductEntity();
@@ -69,7 +69,7 @@ public class ProductSeeder {
         product3.setPrice(20);
         product3.setCategory(categories.get(random.nextInt(categories.size())));
         var img3 = new ProductImageEntity();
-        img1.setName(imageName);
+        img1.setImageURL(imageName);
         img1.setProduct(product3);
 
         // Зберігаємо дані до бази

@@ -12,7 +12,7 @@ public class ProductImageEntity {
     private Integer id;
 
     @Column(length = 255, nullable = false)
-    private String name;
+    private String imageURL;
 
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)

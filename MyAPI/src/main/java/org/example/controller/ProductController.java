@@ -1,6 +1,8 @@
 package org.example.controller;
 
+import org.example.Mappers.ProductMapper;
 import org.example.dtos.CategoryPostDto;
+import org.example.dtos.ProductGetDto;
 import org.example.dtos.ProductPostDto;
 import org.example.entities.CategoryEntity;
 import org.example.entities.ProductEntity;
@@ -21,8 +23,11 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private ProductMapper productMapper;
+
     @GetMapping
-    public List<ProductEntity> getAllProducts() { return productService.getAllProducts(); }
+    public List<ProductGetDto> getAllProducts() { return productMapper.toProductGetDtoList(productService.getAllProducts()); }
 
     @GetMapping("/{id}")
     public ResponseEntity<ProductEntity> getProductById(@PathVariable int id){

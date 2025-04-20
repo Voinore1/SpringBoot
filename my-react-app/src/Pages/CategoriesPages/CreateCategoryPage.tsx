@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {ICategoryCreate} from "../models/Category.ts";
-import {useCreateCategoryMutation} from "../services/categoriesAPI.ts";
+import {ICategoryCreate} from "../../models/Category.ts";
+import {useCreateCategoryMutation} from "../../services/categoriesAPI.ts";
 
 
 const CreateCategoryPage: React.FC = () => {

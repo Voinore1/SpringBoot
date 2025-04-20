@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect, useState } from 'react';
-import { useGetCategoryByIdQuery, useUpdateCategoryMutation } from '../services/categoriesAPI.ts';
+import { useGetCategoryByIdQuery, useUpdateCategoryMutation } from '../../services/categoriesAPI.ts';
 import { useNavigate, useParams } from 'react-router-dom';
-import {APP_ENV} from "../env";
+import {APP_ENV} from "../../env";
 
 const EditCategoryPage: React.FC = () => {
     // Extract category ID from URL parameters

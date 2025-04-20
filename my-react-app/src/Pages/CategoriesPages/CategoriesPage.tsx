@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {Table, Modal, Button} from 'flowbite-react';
-import {APP_ENV} from "../env";
+import {APP_ENV} from "../../env";
 import {Link} from "react-router-dom";
-import {useDeleteCategoryMutation, useGetAllCategoriesQuery} from "../services/categoriesAPI.ts";
+import {useDeleteCategoryMutation, useGetAllCategoriesQuery} from "../../services/categoriesAPI.ts";
 import { LiaEdit } from "react-icons/lia";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
