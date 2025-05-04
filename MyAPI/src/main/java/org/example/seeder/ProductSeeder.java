@@ -45,6 +45,7 @@ public class ProductSeeder {
         var img1 = new ProductImageEntity();
         img1.setImageURL(imageName);
         img1.setProduct(product1);
+        img1.setPriority(1);
 
         var product2 = new ProductEntity();
         product2.setName("Jacket");
@@ -56,8 +57,9 @@ public class ProductSeeder {
         product2.setPrice(150);
         product2.setCategory(categories.get(random.nextInt(categories.size())));
         var img2 = new ProductImageEntity();
-        img1.setImageURL(imageName);
-        img1.setProduct(product2);
+        img2.setImageURL(imageName);
+        img2.setProduct(product2);
+        img2.setPriority(2);
 
         var product3 = new ProductEntity();
         product3.setName("C++");
@@ -69,8 +71,9 @@ public class ProductSeeder {
         product3.setPrice(20);
         product3.setCategory(categories.get(random.nextInt(categories.size())));
         var img3 = new ProductImageEntity();
-        img1.setImageURL(imageName);
-        img1.setProduct(product3);
+        img3.setImageURL(imageName);
+        img3.setProduct(product3);
+        img3.setPriority(3);
 
         // Зберігаємо дані до бази
         productRepository.saveAll(Arrays.asList(product1, product2, product3));

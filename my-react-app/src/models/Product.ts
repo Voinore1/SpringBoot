@@ -9,3 +9,16 @@ export interface Product {
     categoryName: string;
     imageLinks: string[];
 }
+
+export interface IProductCreate {
+    amount: number;
+    categoryId: number;
+    description: string;
+    imageFiles: File[] | null;
+    name: string;
+    price: number;
+}
+
+export interface IProductEdit extends IProductCreate {
+    id: number;
+}

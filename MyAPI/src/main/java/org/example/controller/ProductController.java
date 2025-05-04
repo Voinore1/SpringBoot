@@ -1,10 +1,8 @@
 package org.example.controller;
 
 import org.example.Mappers.ProductMapper;
-import org.example.dtos.CategoryPostDto;
 import org.example.dtos.ProductGetDto;
 import org.example.dtos.ProductPostDto;
-import org.example.entities.CategoryEntity;
 import org.example.entities.ProductEntity;
 import org.example.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,17 +25,19 @@ public class ProductController {
     private ProductMapper productMapper;
 
     @GetMapping
-    public List<ProductGetDto> getAllProducts() { return productMapper.toProductGetDtoList(productService.getAllProducts()); }
+    public List<ProductGetDto> getAllProducts() { return productMapper.toDto(productService.getAllProducts()); }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductEntity> getProductById(@PathVariable int id){
-        Optional<ProductEntity> product = productService.getProductById(id);
-        return product.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<ProductGetDto> getProductById(@PathVariable int id){
+        var productDto = productService.getProductById(id);
+        return productDto != null
+                ? new ResponseEntity<>(productDto, HttpStatus.OK)
+                : ResponseEntity.notFound().build();
     }
 
     @PostMapping(consumes = MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<ProductEntity> createProduct(@ModelAttribute ProductPostDto product){
-        ProductEntity createdProduct = productService.createProduct(product);
+    public ResponseEntity<ProductGetDto> createProduct(@ModelAttribute ProductPostDto product){
+        ProductGetDto createdProduct = productService.createProduct(product);
         return new ResponseEntity<>(createdProduct, HttpStatus.CREATED);
     }
 

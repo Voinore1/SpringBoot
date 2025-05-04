@@ -1,11 +1,38 @@
-import {Table} from 'flowbite-react';
+import {Button, Modal, Table} from 'flowbite-react';
 import {APP_ENV} from "../../env";
 import {Link} from "react-router-dom";
 import { LiaEdit } from "react-icons/lia";
-import {useGetAllProductsQuery} from "../../services/productsAPI.ts";
+import {useDeleteProductMutation, useGetAllProductsQuery} from "../../services/productsAPI.ts";
+import {HiOutlineExclamationCircle} from "react-icons/hi";
+import React, {useState} from "react";
+import {FaRegTrashAlt} from "react-icons/fa";
 
 const CategoriesPage: React.FC = () => {
     const {data: products, error, isLoading} = useGetAllProductsQuery();
+    const [deleteProduct, {isLoading: isDeleting}] = useDeleteProductMutation();
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const [productToDelete, setProductToDelete] = useState<number | null>(null);
+
+    const handleDeleteClick = (id: number) => {
+        setProductToDelete(id);
+        setIsModalOpen(true);
+    };
+
+    const handleDelete = async() => {
+        if(productToDelete){
+            try{
+                await deleteProduct(productToDelete).unwrap();
+            } catch (err) {
+                console.error("Error deleting product:", err);
+            }
+        }
+        closeDeleteModal();
+    };
+
+    const closeDeleteModal = () => {
+        setIsModalOpen(false);
+        setProductToDelete(null);
+    }
 
     if (isLoading) return <p>Loading...</p>;
     if (error) return <p>Error occurred while fetching categories.</p>;
@@ -71,6 +98,9 @@ const CategoriesPage: React.FC = () => {
                                         <Link to={`edit/${product.id}`}>
                                             <LiaEdit className="mx-1 h-6 w-6 text-gray-700" />
                                         </Link>
+                                        <a>
+                                            <FaRegTrashAlt onClick={() => handleDeleteClick(product.id)} className="mx-1 h-6 w-6 text-red-800" />
+                                        </a>
                                     </div>
                                 </Table.Cell>
                             </Table.Row>
@@ -78,6 +108,26 @@ const CategoriesPage: React.FC = () => {
                     </Table.Body>
                 </Table>
             </div>
+
+            <Modal dismissible show={isModalOpen} size="md" onClose={() => closeDeleteModal()} popup>
+                <Modal.Header />
+                <Modal.Body>
+                    <div className="text-center">
+                        <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
+                        <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+                            Are you sure you want to delete this product?
+                        </h3>
+                        <div className="flex justify-center gap-4">
+                            <Button color="failure" onClick={() => handleDelete()} disabled={isDeleting}>
+                                {isDeleting ? "Deleting..." : "Yes, I'm sure"}
+                            </Button>
+                            <Button color="gray" onClick={() => closeDeleteModal()}>
+                                No, cancel
+                            </Button>
+                        </div>
+                    </div>
+                </Modal.Body>
+            </Modal>
         </>
     );
 };

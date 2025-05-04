@@ -13,9 +13,17 @@ public class DatabaseSeeder implements CommandLineRunner {
     @Autowired
     private ProductSeeder productSeeder;
 
+    @Autowired
+    private RoleSeeder roleSeeder;
+
+    @Autowired
+    private UserSeeder userSeeder;
+
     @Override
     public void run(String... args) throws Exception {
         categorySeeder.seed();
         productSeeder.seed();
+        roleSeeder.seed();
+        userSeeder.seed();
     }
 }

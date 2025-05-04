@@ -1,6 +1,6 @@
 const REMOTE_BASE_URL: string = import.meta.env.VITE_BASE_URL;
 const REMOTE_BASE_API: string = REMOTE_BASE_URL + "/api/";
-const REMOTE_IMAGES_URL: string = REMOTE_BASE_URL + "/Images/";
+const REMOTE_IMAGES_URL: string = REMOTE_BASE_URL + "/Images";
 
 const APP_ENV = {
     REMOTE_BASE_URL,

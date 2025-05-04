@@ -15,7 +15,7 @@ public interface ProductMapper {
     @Mapping(target = "categoryId", source = "category.id")
     @Mapping(target = "categoryName", source = "category.name")
     @Mapping(target = "imageLinks", source = "images", qualifiedByName = "mapImageLinks")
-    ProductGetDto toProductGetDto(ProductEntity productEntity);
+    ProductGetDto toDto(ProductEntity productEntity);
 
     @Named("mapImageLinks")
     default List<String> mapImageLinks(List<ProductImageEntity> images) {
@@ -27,5 +27,5 @@ public interface ProductMapper {
                 .collect(Collectors.toList());
     }
 
-    List<ProductGetDto> toProductGetDtoList(List<ProductEntity> productEntities);
+    List<ProductGetDto> toDto(List<ProductEntity> productEntities);
 }
